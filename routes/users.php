@@ -32,7 +32,7 @@
  * @apiError IncorrectPassword El password capturado es incorrecto
  *
  * @apiErrorExample UserNotFound-Response
- *     HTTP/1.1 404 Bad Request
+ *     HTTP/1.1 404 Not Found
  *     {
  *       "error": "UserNotFound"
  *     }

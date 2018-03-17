@@ -7,7 +7,7 @@ class Auth {
             $this->_deny($response);
         }
         
-        return $token->Users->toArray();
+        return $token->Users;
     }
     
     private function _deny($response) {
