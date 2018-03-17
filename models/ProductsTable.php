@@ -16,4 +16,8 @@ class ProductsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Products');
     }
+
+    public function get($id){
+    	return $this->findOneById($id);
+    }
 }

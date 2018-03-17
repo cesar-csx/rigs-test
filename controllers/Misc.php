@@ -11,7 +11,7 @@ class Misc {
     public static function getError($code){
         switch ($code) {
         	case 'MissingField':
-                $description = 'La petición no es correcta, falta uno o mas parámetros.';
+                $description = 'La petición no es correcta, falta uno o mas parámetros, revise los parámetros de su petición.';
                 $status = 400;
                 break;
             case 'Unauthorized':
@@ -26,8 +26,12 @@ class Misc {
                 $description = 'El password que capturó es incorrecto.';
                 $status = 401;
                 break;
-             case 'ProductNotFound':
+            case 'ProductNotFound':
                 $description = 'El producto solicitado no se encontró';
+                $status = 404;
+                break;
+            case 'InvalidPrice':
+                $description = 'El precio que capturó es inválido. Revise de nuevo sus parámetros';
                 $status = 404;
                 break;
             default:

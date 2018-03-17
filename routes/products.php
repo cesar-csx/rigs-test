@@ -163,3 +163,68 @@ $app->get('/products/{id}', function($request, $response){
 		return $newResponse;
 	}
 });
+
+$app->put('/products/{id}', function($request, $response){
+	try{
+		$Auth = new Auth();
+		$user = $Auth->authorize($request->getHeader('Authorization'), $response);
+		$id = $request->getAttribute('id');
+		$price = $request->getParsedBody()['price'];
+
+		if($user->isAdmin()){
+			$product = new Product();
+			$result = $product->updatePrice($id, $price);
+		} else{
+			$result = Misc::getError('Unauthorized');
+		}
+
+		$response->getBody()->write(json_encode($result['response']));
+        $newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus($result['status']);
+		return $newResponse;
+	} catch(Exception $e){
+		$response->getBody()
+        ->write(json_encode(array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )));
+		$newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus(500);
+		return $newResponse;
+	}
+});
+
+$app->delete('/products/{id}', function($request, $response){
+	try{
+		$Auth = new Auth();
+		$user = $Auth->authorize($request->getHeader('Authorization'), $response);
+		$id = $request->getAttribute('id');
+
+		if($user->isAdmin()){
+			$product = new Product();
+			$result = $product->delete($id);
+		} else{
+			$result = Misc::getError('Unauthorized');
+		}
+
+		$response->getBody()->write(json_encode($result['response']));
+        $newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus($result['status']);
+		return $newResponse;
+	} catch(Exception $e){
+		$response->getBody()
+        ->write(json_encode(array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )));
+		$newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus(500);
+		return $newResponse;
+	}
+});

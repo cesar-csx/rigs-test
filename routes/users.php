@@ -50,7 +50,7 @@ $app->post('/users/login', function ($request, $response){
         if(isset($params['email']) && isset($params['password'])){
             $result = $user->login($params['email'], $params['password']);
         } else{
-            $result = $user->getError('MissingField');
+            $result = Misc::getError('MissingField');
         }
 
 		$response->getBody()->write(json_encode($result['response']));

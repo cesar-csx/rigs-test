@@ -12,8 +12,5 @@
  */
 class Products extends BaseProducts
 {
-	public function getById($id){
-		$product = ProductsTable::getInstance()->findOneById($id);
-		return $product;
-	}
+	
 }
