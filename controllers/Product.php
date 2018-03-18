@@ -32,6 +32,25 @@ class Product{
     return (is_numeric($price) && $price > 0)?true:false;
   }
 
+  private function _writeLog($user, $product, $quantity, $response = null){
+    try{
+      $record = new PurchasesLog();
+      $record->user_id = $user;
+      $record->product_id = $product;
+      $record->quantity = $quantity;
+      $record->response = $response;
+      $record->date = date('Y-m-d H:i:s');
+      return $record->save();
+    } catch(Exception $e){
+        return array('response' => array('error' => array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )),
+        'status' => 500);
+    }
+  }
+
   public function create($data){
     try{
       $errors = $this->_validateProduct($data);
@@ -113,6 +132,57 @@ class Product{
         if($product){
           $product->delete();
           return array('response' => array('result' => 'success'), 'status' => 200);
+        } else{
+          return Misc::getError('ProductNotFound');
+        }
+    } catch(Exception $e){
+        return array('response' => array('error' => array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )),
+        'status' => 500);
+    }
+  }
+
+  public function likeProduct($id){
+    try{
+        $table = ProductsTable::getInstance();
+        $product = $table->get($id);
+        if($product){
+          $likes = (int)$product->likes;
+          $likes++;
+          $product->likes = $likes;
+          $product->save();
+          return array('response' => array('result' => 'success'), 'status' => 200);
+        } else{
+          return Misc::getError('ProductNotFound');
+        }
+    } catch(Exception $e){
+        return array('response' => array('error' => array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )),
+        'status' => 500);
+    }
+  }
+
+  public function buyProduct($user, $product_id, $quantity){
+    try{
+      $table = ProductsTable::getInstance();
+        $product = $table->get($product_id);
+        if($product){
+          $quantity = (int)$quantity;
+          if($product->stock >= $quantity){
+            $product->stock = (int)$product->stock - $quantity;
+            $product->save();
+            $response = array('result' => 'success');
+            $this->_writeLog($user, $product, $quantity, json_encode($response));
+            return array('response' => $response, 'status' => 200);
+          } else{
+            return Misc::getError('NoStockProduct');
+          }
         } else{
           return Misc::getError('ProductNotFound');
         }

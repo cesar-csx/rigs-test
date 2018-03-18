@@ -164,6 +164,38 @@ $app->get('/products/{id}', function($request, $response){
 	}
 });
 
+$app->put('/products/like/{id}', function($request, $response){
+	try{
+		$Auth = new Auth();
+		$user = $Auth->authorize($request->getHeader('Authorization'), $response);
+		$id = $request->getAttribute('id');
+
+		if($user->isAdmin()){
+			$product = new Product();
+			$result = $product->likeProduct($id);
+		} else{
+			$result = Misc::getError('Unauthorized');
+		}
+
+		$response->getBody()->write(json_encode($result['response']));
+        $newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus($result['status']);
+		return $newResponse;
+	} catch(Exception $e){
+		$response->getBody()
+        ->write(json_encode(array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )));
+		$newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus(500);
+		return $newResponse;
+	}
+});
+
 $app->put('/products/{id}', function($request, $response){
 	try{
 		$Auth = new Auth();
@@ -206,6 +238,46 @@ $app->delete('/products/{id}', function($request, $response){
 		if($user->isAdmin()){
 			$product = new Product();
 			$result = $product->delete($id);
+		} else{
+			$result = Misc::getError('Unauthorized');
+		}
+
+		$response->getBody()->write(json_encode($result['response']));
+        $newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus($result['status']);
+		return $newResponse;
+	} catch(Exception $e){
+		$response->getBody()
+        ->write(json_encode(array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )));
+		$newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus(500);
+		return $newResponse;
+	}
+});
+
+$app->post('/products/buy', function($request, $response){
+	try{
+		$Auth = new Auth();
+		$user = $Auth->authorize($request->getHeader('Authorization'), $response);
+		$data = $request->getParsedBody();
+
+		if($user->isAdmin()){
+			if(isset($data['product_id']) && isset($data['quantity'])){
+				$product = new Product();
+				$result = $product->buyProduct(
+					$user->id,
+					$data['product_id'],
+					$data['quantity']
+				);
+			} else{
+				$result = Misc::getError('MissingField');
+			}
 		} else{
 			$result = Misc::getError('Unauthorized');
 		}

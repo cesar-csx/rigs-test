@@ -16,7 +16,7 @@ class Misc {
                 break;
             case 'Unauthorized':
                 $description = 'El usuario que intenta realizar la petición no es administrador.';
-                $status = 401;
+                $status = 403;
                 break;
             case 'UserNotFound':
                 $description = 'El usuario que capturó no existe en el sistema';
@@ -32,7 +32,11 @@ class Misc {
                 break;
             case 'InvalidPrice':
                 $description = 'El precio que capturó es inválido. Revise de nuevo sus parámetros';
-                $status = 404;
+                $status = 400;
+                break;
+            case 'NoStockProduct':
+                $description = 'El producto se encuentra agotado por el momento.';
+                $status = 400;
                 break;
             default:
                 $description = 'Hubo un error en la petición. Intente de nuevo mas tarde.';
