@@ -1,4 +1,34 @@
 <?php
+
+$app->get('/products', function($request, $response){
+	try{
+		$params = $request->getQueryParams();
+		$page = isset($params['page'])? $params['page']: 1;
+		$order = isset($params['sort'])? $params['sort']: 1;
+		$filter = isset($params['search'])?$params['search']:'';
+
+		$product = new Product();
+		$result = $product->getProducts($page, $order, $filter);
+
+		$response->getBody()->write(json_encode($result['response']));
+        $newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus($result['status']);
+		return $newResponse;
+	} catch(Exception $e){
+		$response->getBody()
+        ->write(json_encode(array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )));
+		$newResponse = $response
+        ->withHeader('Content-type', 'application/json; charset=utf-8')
+        ->withStatus(500);
+		return $newResponse;
+	}
+});
+
 /**
  * @api {post} /products Crea nuevos productos
  * @apiName CreateProducts

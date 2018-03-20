@@ -170,7 +170,7 @@ class Product{
 
   public function buyProduct($user, $product_id, $quantity){
     try{
-      $table = ProductsTable::getInstance();
+        $table = ProductsTable::getInstance();
         $product = $table->get($product_id);
         if($product){
           $quantity = (int)$quantity;
@@ -186,6 +186,28 @@ class Product{
         } else{
           return Misc::getError('ProductNotFound');
         }
+    } catch(Exception $e){
+        return array('response' => array('error' => array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'track' => $e->getTraceAsString()
+        )),
+        'status' => 500);
+    }
+  }
+
+
+  public function getProducts($page, $sort, $filter){
+    try{
+      $table = ProductsTable::getInstance();
+      $products = $table->getAllProducts($page, $sort, $filter);
+      $counter = $table->getTotalProducts($page, $sort, $filter);
+      $list = Misc::cleanEntity($products, array('stock', 'last_update'));
+      return array('response' => array(
+        'products' => $list,
+        'total_products' => $counter['total_records'],
+        'total_pages' => $counter['total_pages'],
+      ), 'status' => 200);
     } catch(Exception $e){
         return array('response' => array('error' => array(
             'code' => $e->getCode(),

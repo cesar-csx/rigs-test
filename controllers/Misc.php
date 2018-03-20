@@ -1,8 +1,10 @@
 <?php
 class Misc {
     public static function cleanEntity($entity, $removeFields) {
-        foreach ($removeFields as $field) {
-            unset($entity[$field]);
+        foreach ($entity as &$element) {
+            foreach ($removeFields as $field) {
+                unset($element[$field]);
+            }
         }
     
         return $entity;
@@ -36,6 +38,10 @@ class Misc {
                 break;
             case 'NoStockProduct':
                 $description = 'El producto se encuentra agotado por el momento.';
+                $status = 400;
+                break;
+                case 'NotRegularUser':
+                $description = 'El usuario que intenta realizar la petición es administrador. Solo los usuarios nomrales pueden hacer peticiones al listado.';
                 $status = 400;
                 break;
             default:
