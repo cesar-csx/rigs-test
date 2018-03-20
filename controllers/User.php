@@ -6,6 +6,16 @@ class User{
         $this->config = parse_ini_file( __DIR__ . "/../config/config.ini");
     }
 
+    private function _validatePassword($email, $password) {
+        $salt     = $this->config['salt'];
+        $password = crypt($password, $salt);
+
+        $user_model = new Users();
+
+        $user = $user_model->getUser($email, $password);
+        return $user;
+    }
+
     public function login($email, $password){
         try{
             if(UsersTable::exists($email)){
@@ -20,12 +30,12 @@ class User{
                     );
                     return array('response' => $result, 'status' => 200);
                 } else{
-                    return $this->getError('IncorrectPassword');
+                    return Misc::getError('IncorrectPassword');
                 }
 
                 return $result;
             } else{
-                return $this->getError('UserNotFound');
+                return Misc::getError('UserNotFound');
             }
         } catch(Exception $exception){
             return array('response' => array('error' => array(
@@ -35,43 +45,6 @@ class User{
             )),
             'status' => 500);
         }
-    }
-
-    public function getError($code){
-        switch ($code) {
-            case 'MissingField':
-                $description = 'La petición no es correcta, falta uno o mas parámetros.';
-                $status = 400;
-                break;
-            case 'UserNotFound':
-                $description = 'El usuario que capturó no existe en el sistema';
-                $status = 404;
-                break;
-            case 'IncorrectPassword':
-                $description = 'El password que capturó es incorrecto.';
-                $status = 401;
-                break;
-            default:
-                $description = 'Hubo un error en la petición. Intente de nuevo mas tarde.';
-                $status = 400;
-                break;
-        }
-        return array('response' => array('error' => array(
-            'code' => $code,
-            'message' => $description,
-        )),
-        'status' => $status);
-    }
-
-    
-    private function _validatePassword($email, $password) {
-        $salt     = $this->config['salt'];
-        $password = crypt($password, $salt);
-
-        $user_model = new Users();
-
-        $user = $user_model->getUser($email, $password);
-        return $user;
     }
 
     public function isAdmin($id){

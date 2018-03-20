@@ -32,7 +32,7 @@
  * @apiError IncorrectPassword El password capturado es incorrecto
  *
  * @apiErrorExample UserNotFound-Response
- *     HTTP/1.1 404 Bad Request
+ *     HTTP/1.1 404 Not Found
  *     {
  *       "error": "UserNotFound"
  *     }
@@ -50,7 +50,7 @@ $app->post('/users/login', function ($request, $response){
         if(isset($params['email']) && isset($params['password'])){
             $result = $user->login($params['email'], $params['password']);
         } else{
-            $result = $user->getError('MissingField');
+            $result = Misc::getError('MissingField');
         }
 
 		$response->getBody()->write(json_encode($result['response']));

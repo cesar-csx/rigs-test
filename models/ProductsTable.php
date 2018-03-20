@@ -16,4 +16,43 @@ class ProductsTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Products');
     }
+
+    public function get($id){
+    	return $this->findOneById($id);
+    }
+
+    public function getAllProducts($page = 1, $sort = 'name', $filter = ''){
+        $limit = 10;
+        $offset = ($page -1 ) * $limit;
+        $order = $sort . " DESC";
+
+        $query = Doctrine_Query::create()
+        ->select('*')
+        ->from('Products')
+        ->limit($limit)
+        ->offset($offset)
+        ->orderBy($order);
+        if(!empty($filter)){
+            $query->where("name LIKE ?", '%'.$filter.'%');
+        }        
+        $products = $query->execute()->toArray();
+        return $products;
+    }
+
+     public function getTotalProducts($page = 1, $sort = 'name', $filter = ''){
+        $query = Doctrine_Query::create()->select('*')->from('Products');
+        
+        if(!empty($filter)){
+            $query->where("name LIKE ?", '%'.$filter.'%');
+        }
+
+        $totalRecords = $query->count();
+        $totalPages = (int)($totalRecords/10);
+        if($totalRecords%10 > 0){
+            $totalPages++;
+        }
+
+        return array('total_records' => $totalRecords, 'total_pages' => $totalPages);
+    }
+
 }

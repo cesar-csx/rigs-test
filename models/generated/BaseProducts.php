@@ -14,6 +14,7 @@ Doctrine_Manager::getInstance()->bindComponent('Products', 'doctrine');
  * @property float $price
  * @property integer $likes
  * @property timestamp $last_update
+ * @property Doctrine_Collection $PurchasesLog
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -94,6 +95,8 @@ abstract class BaseProducts extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('PurchasesLog', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
     }
 }

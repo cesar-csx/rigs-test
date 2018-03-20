@@ -1,6 +1,6 @@
 define({
-  "name": "RIGS ::E-commerce API",
-  "version": "v0.1.1",
+  "name": "RIGS :: E-commerce API",
+  "version": "v0.0.1",
   "description": "API Documentation for RIGS E-commerce",
   "title": "RIGS :: E-commerce API",
   "url": "http://localhost/rigs",
@@ -16,7 +16,7 @@ define({
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2018-03-16T05:34:53.353Z",
+    "time": "2018-03-20T09:44:37.357Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }

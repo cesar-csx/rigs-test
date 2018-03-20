@@ -16,4 +16,8 @@ class Users extends BaseUsers
 		$user = UsersTable::getInstance()->FindOneByEmailAndPassword($email, $password);
 		return $user;
 	}
+
+	public function isAdmin(){
+		return $this->type=='admin'?true:false;
+	}
 }

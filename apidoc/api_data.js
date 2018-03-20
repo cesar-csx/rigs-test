@@ -1,851 +1,5 @@
 define({ "api": [
   {
-    "type": "get",
-    "url": "/admin/avisos/{pag}/{instalacion}",
-    "title": "Avisos get",
-    "name": "AvisosGet",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "arr",
-            "optional": false,
-            "field": "array",
-            "description": "<p>of roles</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "GET /admin/avisos/1/null",
-          "content": "{\n   \"avisos\": [\n       {\n           \"texto_aviso\": \"Verificar lectura\",\n           \"numero_aviso\": \"30070952\",\n\t\t\t\t\t\t\"respuesta_aviso\" \"casa sola 5570\",\n\t\t\t\t\t\t\"punto_suministro\" : \"0400160226\",\n\t\t\t\t\t\t\"instalacion\" : \"0500115674\",\n\t\t\t\t\t\t\"digito_control\" : \"0000022118\"\n\t\t\t\t\t\t\"fecha_respuesta\" : \"NULL\"\n\t\t\t\t\t\t\n       },\n       {\n           \"texto_aviso\": \"Verificar lectura\",\n           \"numero_aviso\": \"30070952\",\n\t\t\t\t\t\t\"respuesta_aviso\" \"\tlectura es 300\",\n\t\t\t\t\t\t\"punto_suministro\" : \"0400160226\",\n\t\t\t\t\t\t\"instalacion\" : \"0500339764\",\n\t\t\t\t\t\t\"digito_control\" : \"0000025685\"\n\t\t\t\t\t\t\"fecha_respuesta\" : \"NULL\"\n\t\t\t\t\t\t\n       },\n       \n   ],\n   \"count\": 2,\n   \"total_pages\": 1,\n   \"actual_page\": \"1\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "delete",
-    "url": "/admin/roles/{id}",
-    "title": "Roles delete",
-    "name": "RolesDelete",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "null",
-            "description": ""
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "nombre",
-            "description": "<p>nombre del rol HTTP/1.1 200 OK null</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "get",
-    "url": "/admin/roles?page=1&rol=1",
-    "title": "Roles get",
-    "name": "RolesGet",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "arr",
-            "optional": false,
-            "field": "array",
-            "description": "<p>of roles</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "GET /admin/user/1/null/null/null/null",
-          "content": "{\n   \"roless\": [\n       {\n           \"id\": 4,\n           \"nombre\": \"rol de prueba editado\"\n       },\n       {\n           \"id\": 3,\n           \"nombre\": \"Ejecutivo de medicion\"\n       },\n       {\n           \"id\": 2,\n           \"nombre\": \"Programador de area\"\n       },\n       {\n           \"id\": 1,\n           \"nombre\": \"Administrador\"\n       }\n   ],\n   \"count\": 4,\n   \"total_pages\": 1,\n   \"actual_page\": \"1\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "post",
-    "url": "/admin/roles/{id}",
-    "title": "Roles post",
-    "name": "RolesPost",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "nombre",
-            "description": "<p>nombre del rol</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "arr",
-            "optional": false,
-            "field": "permisos",
-            "description": "<p>Array de keys permisos</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "int",
-            "optional": false,
-            "field": "id",
-            "description": "<p>rol ID</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "string",
-            "optional": false,
-            "field": "nombre",
-            "description": "<p>nombre del rol HTTP/1.1 200 OK { &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;Aministrador&quot;, }</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "delete",
-    "url": "/administrator/admin/ruta/{id}",
-    "title": "Ruta delete",
-    "name": "RutaDelete",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Access token of the user (This token get it from successful login)</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 ok\n{\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Notfound",
-            "description": ""
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "InternalServerError",
-            "description": "<pre><code>HTTP/1.1 500 Internal server error \t {   &quot;error&quot;: &quot;InternalServerError&quot; }</code></pre>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "MissingField-Response",
-          "content": "HTTP/1.1 400 Bad request\n{\n  \"error\": \"Notfound\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "get",
-    "url": "/admin/user/{pag}/{co}/{n_archivo}/{id_user}/{id_ruta}",
-    "title": "Ruta get",
-    "name": "RutaGet",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "arr",
-            "optional": false,
-            "field": "array",
-            "description": "<p>of user-rutas</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "GET /admin/user/1/null/null/null/null",
-          "content": " [\n    {\n        \"id\": \"1\",\n        \"usuario_id\": \"Administrator\",\n        \"ruta_id\": \"mail@rallyaroundus.com\",\n        \"fecha_hora\": null\n    },\n    {\n        \"id\": \"1\",\n        \"usuario_id\": \"Administrator\",\n        \"ruta_id\": \"mail@rallyaroundus.com\",\n        \"fecha_hora\": null\n    },\n    \n ]\n*",
-          "type": "json"
-        },
-        {
-          "title": "GET /admin/user/null/null/null/ejecutivo/null",
-          "content": "[\n   {\n       \"id\": \"1\",\n       \"usuario_id\": \"Administrator\",\n       \"ruta_id\": \"mail@rallyaroundus.com\",\n       \"fecha_hora\": null\n   },\n   {\n       \"id\": \"1\",\n       \"usuario_id\": \"Administrator\",\n       \"ruta_id\": \"mail@rallyaroundus.com\",\n       \"fecha_hora\": null\n   },\n   \n]",
-          "type": "json"
-        },
-        {
-          "title": "GET /administrator/admin/null/null/null/1",
-          "content": "  [\n\t\t  {\n         \"id\": \"1\",\n         \"usuario_id\": \"Administrator\",\n         \"ruta_id\": \"mail@rallyaroundus.com\",\n         \"fecha_hora\": null\n     },\n  ]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "post",
-    "url": "/administrator/admin/ruta/{id}",
-    "title": "Ruta create-edit",
-    "name": "RutaPost",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Access token of the user (This token get it from successful login)</p>"
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "usuario_id",
-            "description": "<p>User id</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "n_archivo",
-            "description": "<p>Numero de archivo</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "co",
-            "description": "<p>centro operativo</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "    HTTP/1.1 201 Created\n    {\n      \"message\" : \"Asignacion correcta\",\n\t\t\t \"status\": 201\"\n    }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "MissingField",
-            "description": ""
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "InternalServerError",
-            "description": "<pre><code>HTTP/1.1 500 Internal server error \t {   &quot;error&quot;: &quot;MissingField&quot; }</code></pre>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "MissingField-Response",
-          "content": "HTTP/1.1 400 Bad request\n{\n  \"error\": \"MissingField\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "post",
-    "url": "/admin/rutas/reporte",
-    "title": "Ruta reporte post",
-    "name": "RutaPost",
-    "group": "Administrator",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "date",
-            "description": "<p>fecha planificada</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "status",
-            "description": "<p>status Ruta</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "co",
-            "description": "<p>centro operativo</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "porcion",
-            "description": "<p>porcion de archivo</p>"
-          }
-        ]
-      }
-    },
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "GET /admin/user/26012017/2",
-          "content": "[\n   {\n       \"id\": \"1\",\n       \"usuario_id\": \"Administrator\",\n       \"ruta_id\": \"mail@rallyaroundus.com\",\n       \"fecha_hora\": null\n   },\n   {\n       \"id\": \"1\",\n       \"usuario_id\": \"Administrator\",\n       \"ruta_id\": \"mail@rallyaroundus.com\",\n       \"fecha_hora\": null\n   },\n   \n]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "post",
-    "url": "/admin/rutas/ejecutada?page=1&ul=000001&ejecutivo=123",
-    "title": "Ruta ejecutada post",
-    "name": "RutasEjecutadasReportePost",
-    "group": "Administrator",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "date",
-            "description": "<p>fecha planificada</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "status",
-            "description": "<p>status Ruta</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "co",
-            "description": "<p>centro operativo</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "porcion",
-            "description": "<p>porcion de archivo</p>"
-          }
-        ]
-      }
-    },
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "GET ",
-          "content": "[\n   {\n       \"id\": \"1\",\n       \"unidad_lectora\": \"000001\",\n       \"ejecutivo\": \"mail@rallyaroundus.com\",\n       \"fecha\": 01/01/2018\n   {\n       \"id\": \"1\",\n       \"unidad_lectora\": \"000001\",\n       \"ejecutivo\": \"mail@rallyaroundus.com\",\n       \"fecha\": 01/01/2018\n   }\n   \n]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "get",
-    "url": "/admin/secciones",
-    "title": "Secciones get",
-    "name": "SeccionesGet",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "arr",
-            "optional": false,
-            "field": "array",
-            "description": "<p>of secciones</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "GET /admin/user/1/null/null/null/null",
-          "content": " [\n    {\n        \"id\": \"7\",\n        \"key\": \"rts_c\",\n        \"descripcion\": \"Crear rutas\"\n    },\n    {\n        \"id\": \"8\",\n        \"key\": \"rts_e\",\n        \"descripcion\": \"Editar rutas\",\n        \"fecha_hora\": null\n    },\n    \n ]\n*",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "get",
-    "url": "/admin/user/{pag}/{name}/{n_emplaedo}/{rol}/{id}",
-    "title": "Admin get",
-    "name": "UaerGet",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Token de acceso</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "arr",
-            "optional": false,
-            "field": "array",
-            "description": "<p>of users</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "GET /admin/user/1/null/null/null/null",
-          "content": " [\n    {\n        \"id\": \"1\",\n        \"name\": \"Administrator\",\n        \"email\": \"mail@rallyaroundus.com\",\n        \"birthdate\": null,\n        \"last_name\": \"Rallyaround us\",\n        \"phone\": \"\",\n        \"state\": \"Usa\",\n        \"role\": \"superuser\",\n        \"image_url\": null,\n    },\n    {\n        \"id\": \"13\",\n        \"name\": \"Brett\",\n        \"email\": \"mail@rallyaroundus.com\",\n        \"birthdate\": null,\n        \"last_name\": \"Thompson\",\n        \"phone\": \"3337214334\",\n        \"state\": \"\",\n        \"role\": \"superuser\",\n        \"image_url\": null,\n    }\n ]\n*",
-          "type": "json"
-        },
-        {
-          "title": "GET /admin/user/null/null/null/ejecutivo/null",
-          "content": "[\n   {\n       \"id\": \"1\",\n       \"name\": \"Administrator\",\n       \"email\": \"mail@rallyaroundus.com\",\n       \"birthdate\": null,\n       \"last_name\": \"Rallyaround us\",\n       \"phone\": \"\",\n       \"state\": \"Usa\",\n       \"role\": \"ejecutivo\",\n       \"image_url\": null,\n   },\n   {\n       \"id\": \"13\",\n       \"name\": \"Brett\",\n       \"email\": \"mail@rallyaroundus.com\",\n       \"birthdate\": null,\n       \"last_name\": \"Thompson\",\n       \"phone\": \"3337214334\",\n       \"state\": \"\",\n       \"role\": \"ejecutivo\",\n       \"image_url\": null,\n   }\n]",
-          "type": "json"
-        },
-        {
-          "title": "GET /administrator/admin/null/null/null/1",
-          "content": "[\n   {\n       \"id\": \"1\",\n       \"name\": \"Administrator\",\n       \"email\": \"mail@rallyaroundus.com\",\n       \"birthdate\": null,\n       \"last_name\": \"Rallyaround us\",\n       \"phone\": \"\",\n       \"state\": \"Usa\",\n       \"role\": \"superuser\",\n       \"image_url\": null,\n   }\n]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
-    "type": "delete",
-    "url": "/administrator/admin/{id}",
-    "title": "User delete",
-    "name": "UserDelete",
-    "group": "Administrator",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Access token of the user (This token get it from successful login)</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "null",
-            "description": ""
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\nnull the item was deleted",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The email reigster is duplicated in the system</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "UserNotFound-Response",
-          "content": "HTTP/1.1 400 Bad request\n{\n  \"error\": \"UserNotFound\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
-    "groupTitle": "Administrator"
-  },
-  {
     "success": {
       "fields": {
         "Success 200": [
@@ -875,8 +29,722 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/products/buy",
+    "title": "Comprar un producto",
+    "name": "BuyProducts",
+    "group": "Productos",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Token de acceso del usuario (Este token se obtiene al hacer login correctamente)</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "product_id",
+            "description": "<p>ID del producto que se desea comprar.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "quantity",
+            "description": "<p>Cantidad de productos que se desea comprar.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Si la petición se realizó correctamente retornará &quot;success&quot;.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "PUT /products/1:",
+          "content": "{\n   \"price\": 75.50\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"result\": \"success\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotRegularUser",
+            "description": "<p>Error al intentar hacer la petición como usuario registrado. Solo los adminsitradores pueden modificar el precio a un producto.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NoStockProduct",
+            "description": "<p>Error cuando el stock del producto no logra satisfacer la cantidad de productos comprados.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "NotRegularUser-Response",
+          "content": "HTTP/1.1 403 Forbidden\n{\n  \"error\": {\n    \"code\": \"NotRegularUser\",\n    \"message\": \"Error al intentar hacer la petición como administrador. Solo los usuarios registrados pueden dar like a un producto.\"\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "NoStockProduct-Response",
+          "content": "  HTTP/1.1 400 Bad Request\n{\n    \"error\": {\n       \"code\": \"NoStockProduct\",\n       \"message\": \"El producto se encuentra agotado por el momento.\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "post",
+    "url": "/products",
+    "title": "Crea nuevos productos",
+    "name": "CreateProducts",
+    "group": "Productos",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Token de acceso del usuario (Este token se obtiene al hacer login correctamente)</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Nombre del producto</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "npc",
+            "description": "<p>NPC del producto</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "stock",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Precio del producto</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "product",
+            "description": "<p>Objeto producto. Contiene la información del producto.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "product.id",
+            "description": "<p>ID del producto.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.name",
+            "description": "<p>Nombre del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.npc",
+            "description": "<p>NPC del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.stock",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.price",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.likes",
+            "description": "<p>Número de &quot;Likes&quot; del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.last_update",
+            "description": "<p>Fecha de última actualización del producto</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "POST /products:",
+          "content": "{\n      \"name\": \"Producto 2\",\n      \"npc\": \"XX\",\n      \"stock\": \"53\",\n      \"price\": \"1000.00\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\n{\n   \"product\": {\n      \"id\": \"3\",\n      \"name\": \"Producto 2\",\n      \"npc\": \"XX\",\n      \"stock\": \"53\",\n      \"price\": \"1000.00\",\n      \"likes\": \"0\",\n      \"last_update\": \"2018-03-16 12:03:40\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Errors",
+            "description": "<p>Objeto que contiene el nombre del campo y mensaje que genera error</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Errors-Response",
+          "content": "HTTP/1.1 404 Bad Request\n{\n  \"errors\": {\n    \"name\": \"El nombre es un campo requerido\",\n    \"npc\": \"Este es un campo requerido\",\n    \"stock\": \"El stock es campo requerido\",\n    \"price\": \"El precio es un campo requerido\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "delete",
+    "url": "/products/:id",
+    "title": "Elimina un producto",
+    "name": "DeleteProducts",
+    "group": "Productos",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Token de acceso del usuario (Este token se obtiene al hacer login correctamente)</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID del producto al que se desea eliminar</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Si la petición se realizó correctamente retornará &quot;success&quot;.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"result\": \"success\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Error al intentar hacer la petición como usuario registrado. Solo los adminsitradores pueden eliminar productos.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Response",
+          "content": "HTTP/1.1 403 Forbidden\n{\n  \"error\": {\n    \"code\": \"Unauthorized\",\n    \"message\": \"El usuario que intenta realizar la petición no es administrador.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "put",
+    "url": "/products/:id",
+    "title": "Modifica el precio de un producto",
+    "name": "EditProducts",
+    "group": "Productos",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Token de acceso del usuario (Este token se obtiene al hacer login correctamente)</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID del producto al que se desea ediar el precio</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "price",
+            "description": "<p>Nuevo precio que se desea establecer al producto. Este parámetro debe enviarse en la petición como un objeto JSON.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Si la petición se realizó correctamente retornará &quot;success&quot;.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "PUT /products/1:",
+          "content": "{\n   \"price\": 75.50\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"result\": \"success\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Error al intentar hacer la petición como usuario registrado. Solo los adminsitradores pueden modificar el precio a un producto.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized-Response",
+          "content": "HTTP/1.1 403 Forbidden\n{\n  \"error\": {\n    \"code\": \"Unauthorized\",\n    \"message\": \"El usuario que intenta realizar la petición no es administrador.\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "get",
+    "url": "/products/:id",
+    "title": "Obtiene la información de un producto por ID",
+    "name": "GetProduct",
+    "group": "Productos",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID del producto</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "product",
+            "description": "<p>Objeto producto. Contiene la información del producto.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "product.id",
+            "description": "<p>ID del producto.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.name",
+            "description": "<p>Nombre del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.npc",
+            "description": "<p>NPC del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.stock",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.price",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.likes",
+            "description": "<p>Número de &quot;Likes&quot; del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "product.last_update",
+            "description": "<p>Fecha de última actualización del producto</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\n{\n   \"product\": {\n      \"id\": \"3\",\n      \"name\": \"Producto 2\",\n      \"npc\": \"XX\",\n      \"stock\": \"53\",\n      \"price\": \"1000.00\",\n      \"likes\": \"0\",\n      \"last_update\": \"2018-03-16 12:03:40\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Errors",
+            "description": "<p>Objeto que contiene el nombre del campo y mensaje que genera error</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Errors-Response",
+          "content": "HTTP/1.1 404 Bad Request\n{\n  \"errors\": {\n    \"name\": \"El nombre es un campo requerido\",\n    \"npc\": \"Este es un campo requerido\",\n    \"stock\": \"El stock es campo requerido\",\n    \"price\": \"El precio es un campo requerido\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "get",
+    "url": "/products?page=:page&sort=:sort&search=:seach",
+    "title": "Obtiene la lista de productos.",
+    "name": "GetProducts",
+    "group": "Productos",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "int",
+            "optional": true,
+            "field": "page",
+            "description": "<p>Página que se desea consultar (si no se recibe este parámetro, por defecto se regresará la primera página)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "sort",
+            "description": "<p>Ordenamiento que se le desea dar (solo acepta dos posibles valores: &quot;name&quot; o &quot;likes&quot;). Si no se recibe este parámetro por defecto el ordenamiento es por nombre del producto.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "search",
+            "description": "<p>Parámetro de búsqueda. Se buscará alguna coincidencia en el nombre del producto si es que se recibe este parámetro.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "products",
+            "description": "<p>Listado de productos paginado, ordenado y con filtros (si es que se agregó a la petición)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "products.id",
+            "description": "<p>ID del producto.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "products.name",
+            "description": "<p>Nombre del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "products.npc",
+            "description": "<p>NPC del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "products.stock",
+            "description": "<p>Existencia del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "products.price",
+            "description": "<p>Precio del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "products.likes",
+            "description": "<p>Número de &quot;Likes&quot; del producto</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "int",
+            "optional": false,
+            "field": "total_products",
+            "description": "<p>Número total de productos encontrados en esta petición.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "total_pages",
+            "description": "<p>Número total de páginas de esta petición. Es un valor de referencia para saber el número máximo de páginas que se puede solicitar con los parámetros dados.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response GET /products:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"products\": [\n      {\n        \"id\": \"1\",\n        \"name\": \"Producto 1\",\n        \"npc\": \"CCC\",\n        \"stock\": \"53\",\n        \"price\": \"1200.00\",\n        \"likes\": \"27\",\n      },\n      {\n        \"id\": \"2\",\n        \"name\": \"Producto 2\",\n        \"npc\": \"AAA\",\n        \"stock\": \"20\",\n        \"price\": \"850.00\",\n        \"likes\": \"70\",\n      },\n      ...\n      {\n        \"id\": \"246\",\n        \"name\": \"Radiador Nuevo\",\n        \"npc\": \"RRR\",\n        \"stock\": \"15\",\n        \"price\": \"1000.00\",\n        \"likes\": \"120\",\n      },\n   ],\n   total_products: 235,\n   total_pages: 24\n}",
+          "type": "json"
+        },
+        {
+          "title": "Success-Response GET /products?page=2&sort=likes%search=pro",
+          "content": "HTTP/1.1 200 OK\n{\n   \"products\": [\n      {\n        \"id\": \"1\",\n        \"name\": \"Producto 8\",\n        \"npc\": \"CCC\",\n        \"stock\": \"10\",\n        \"price\": \"1100.00\",\n        \"likes\": \"120\",\n      },\n      {\n        \"id\": \"2\",\n        \"name\": \"Producto 13\",\n        \"npc\": \"AAA\",\n        \"stock\": \"15\",\n        \"price\": \"200.00\",\n        \"likes\": \"70\",\n      },\n      ...\n      {\n        \"id\": \"246\",\n        \"name\": \"Radiador Profesional\",\n        \"npc\": \"RRR\",\n        \"stock\": \"15\",\n        \"price\": \"1000.00\",\n        \"likes\": \"35\",\n      },\n   ],\n   total_products: 17,\n   total_pages: 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "put",
+    "url": "/products/like/:id",
+    "title": "Like a un producto",
+    "name": "LikeProducts",
+    "group": "Productos",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Token de acceso del usuario (Este token se obtiene al hacer login correctamente)</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID del producto al que se desea hacer like</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "string",
+            "optional": false,
+            "field": "result",
+            "description": "<p>Si la petición se realizó correctamente retornará &quot;success&quot;.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"result\": \"success\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "NotRegularUser",
+            "description": "<p>Error al intentar hacer la petición como administrador. Solo los usuarios registrados pueden dar like a un producto.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "NotRegularUser-Response",
+          "content": " HTTP/1.1 403 Forbidden\n {\n     \"error\": {\n       \"code\": \"NotRegularUser\",\n       \"message\": \"El usuario que intenta realizar la petición es administrador. Solo los usuarios registrados pueden realizar esta acción.\"\n     }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/products.php",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "post",
     "url": "/users/login",
-    "title": "Inicio de sesión del usuario en móvil",
+    "title": "Inicio de sesión del usuario",
     "name": "LoginUsers",
     "group": "Usuarios",
     "parameter": {
@@ -884,17 +752,10 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "integer",
-            "optional": true,
-            "field": "number",
-            "description": "<p>Número de ejecutivo. Nota, es obligatorio si no se captura el email.</p>"
-          },
-          {
-            "group": "Parameter",
             "type": "string",
-            "optional": true,
+            "optional": false,
             "field": "email",
-            "description": "<p>email del usuario. Nota, es obligatorio si no se captura el número de ejecutivo.</p>"
+            "description": "<p>e-mail del usuario. Nota, es obligatorio si no se captura el número de ejecutivo.</p>"
           },
           {
             "group": "Parameter",
@@ -942,12 +803,12 @@ define({ "api": [
       "examples": [
         {
           "title": "POST /users/login:",
-          "content": "{\n  \"number\": \"123\"\n  \"password\": \"123456\",\n  \"sistema\" : \"rep_fall_app\"\n}",
+          "content": "{\n  \"email\": \"usuario@rigs.com.mx\"\n  \"password\": \"password123\"\n}",
           "type": "json"
         },
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"id\": \"1\",\n  \"name\": \"César Sánchez de Tagle\",\n  \"email\": \"gsanchez@syesoftware.com\",\n  \"numero_ejecutivo\": \"123456\",\n  \"token\": \"G4Dab26745pd485bPhuvXuL4E2oEAt4k15ZA5Vk51dIl0qZLowzCa\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"id\": \"1\",\n  \"name\": \"César\",\n  \"last_name\": \"Sánchez de Tagle\",\n  \"email\": \"usuario@rigs.com.mx\",\n  \"token\": \"G4Dab26745pd485bPhuvXuL4E2oEAt4k15ZA5Vk51dIl0qZLowzCa\"\n}",
           "type": "json"
         }
       ]
@@ -972,66 +833,18 @@ define({ "api": [
       "examples": [
         {
           "title": "UserNotFound-Response",
-          "content": "HTTP/1.1 404 Bad Request\n{\n  \"error\": \"UserNotFound\"\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
           "type": "json"
         },
         {
           "title": "IncorrectPassword-Response",
           "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"IncorrectPassword\"\n}",
           "type": "json"
-        },
-        {
-          "title": "UserHasNotAccess-Response",
-          "content": "HTTP/1.1 401 Bad Request\n{\n  \"error\": \"UserHasNotAccess\"\n}",
-          "type": "json"
         }
       ]
     },
     "version": "0.0.0",
     "filename": "./routes/users.php",
-    "groupTitle": "Usuarios"
-  },
-  {
-    "type": "get",
-    "url": "/user/userCanAccess/{key}",
-    "title": "User Can Access",
-    "name": "UserCanAccess",
-    "group": "Usuarios",
-    "success": {
-      "examples": [
-        {
-          "title": "GET /admin/userCanAccess/rls_d",
-          "content": "\nHTTP/1.1 200 OK\n{\n\ttrue\n}",
-          "type": "json"
-        },
-        {
-          "title": "GET /admin/userCanAccess/rls_e",
-          "content": "\nHTTP/1.1 200 OK\n{\n\tfalse\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "unauthorised",
-            "description": "<p>no header</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "unauthorised",
-          "content": "{\n  \"error\": \"Missing, invalid or expired token present in request. Include an Authorization header\",\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "./routes/admin.php",
     "groupTitle": "Usuarios"
   }
 ] });
