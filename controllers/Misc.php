@@ -41,8 +41,8 @@ class Misc {
                 $status = 400;
                 break;
                 case 'NotRegularUser':
-                $description = 'El usuario que intenta realizar la petición es administrador. Solo los usuarios nomrales pueden hacer peticiones al listado.';
-                $status = 400;
+                $description = 'El usuario que intenta realizar la petición es administrador. Solo los usuarios registrados pueden realizar esta acción.';
+                $status = 403;
                 break;
             default:
                 $description = 'Hubo un error en la petición. Intente de nuevo mas tarde.';

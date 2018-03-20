@@ -2,4 +2,3 @@ vendor/*
 config/config.ini
 composer.lock
 .idea/
-.htaccess

@@ -93,7 +93,7 @@ abstract class BaseUsers extends Doctrine_Record
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('Tokens', array(
+        $this->hasOne('Tokens', array(
              'local' => 'id',
              'foreign' => 'user_id'));
     }
