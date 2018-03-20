@@ -1,0 +1,14 @@
+{
+  "name": "RIGS :: E-commerce API",
+  "version": "v0.0.1",
+  "description": "API Documentation for RIGS E-commerce",
+  "title": "RIGS :: E-commerce API",
+  "url" : "http://localhost/rigs",
+  "order": [
+    "Usuarios"
+  ],
+  "template": {
+  	"withCompare": false,
+  	"withGenerator": false
+  }
+}

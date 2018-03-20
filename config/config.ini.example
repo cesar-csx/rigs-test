@@ -1,0 +1,13 @@
+;System Config
+
+[SISTEMA]
+salt = '$2y$10$8EXbf00845pd485bPhuvX0$';
+# Can be DNS or IP, for example: http://localhost/example or http://127.0.0.1/example
+root = 'http://127.0.0.1/rigs'
+
+[DB ACCESS]
+host = '127.0.0.1'
+user = 'user'
+pass = 'password'
+port = '3306'
+db = 'database_name'
